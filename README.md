@@ -5,11 +5,10 @@ ClinicSystem is an appointment record management application built with VB.NET. 
 
 [Preview Video](https://www.youtube.com/watch?v=6MIb-sQymHw)
 
-![clinic-loginform](https://github.com/user-attachments/assets/b0ef62a7-9969-4477-9770-40528ea2c88e)
-![clinic-signupform](https://github.com/user-attachments/assets/ef117bb6-77a3-4b42-8c0a-7478fe70361e)
-
-![clinic-patientform](https://github.com/user-attachments/assets/e998522e-cc70-4b1d-89fa-7a1281b15d7d)
-![clinic-appointmentform](https://github.com/user-attachments/assets/f23f7feb-d554-43c9-abcd-7d10952970a1)
+<img src="https://github.com/user-attachments/assets/b0ef62a7-9969-4477-9770-40528ea2c88e" width="400"/> 
+<img src="https://github.com/user-attachments/assets/ef117bb6-77a3-4b42-8c0a-7478fe70361e" width="400"/> 
+<img src="https://github.com/user-attachments/assets/e998522e-cc70-4b1d-89fa-7a1281b15d7d" width="400"/> 
+<img src="https://github.com/user-attachments/assets/f23f7feb-d554-43c9-abcd-7d10952970a1" width="400"/>
 
 ---
 
