@@ -10,13 +10,14 @@ ClinicSystem is an appointment record management application built with VB.NET. 
 
 ![clinic-patientform](https://github.com/user-attachments/assets/e998522e-cc70-4b1d-89fa-7a1281b15d7d)
 ![clinic-appointmentform](https://github.com/user-attachments/assets/f23f7feb-d554-43c9-abcd-7d10952970a1)
- 
+
+---
+
 **Features**
-- Login and sign-up
-forms (Admin & Patient Access)
+- Login and sign-up forms (Admin & Patient Access)
 - Basic Create, Read, Update, Delete (CRUD) operations  
 - Clean and simple Windows Forms interface  
-- Admin and patient access views  
+- Distinct views for admin and patient access  
 
 **Requirements**
 - Visual Studio (2012 or later)  
@@ -26,13 +27,12 @@ forms (Admin & Patient Access)
 
 **Installation Instructions**
 1. Download and extract the project `.zip` file.  
-2. Start MySQL using XAMPP.  
-3. Open SQLYog and connect to your MySQL server locally.  
-4. Import the `.sql` file inside the `sql` folder to create the database and tables.  
+2. Start MySQL using XAMPP (or your preferred method).  
+3. Open SQLYog and connect to your local MySQL server.  
+4. Import the `.sql` file located in the `sql` folder to create the database and tables.  
 5. Open `ClinicSystem.sln` in Visual Studio.  
-6. Before running, make sure:  
-   - Your system has .NET Framework 4.8.1 or later installed and running on the project  
-     - [Download .NET Framework 4.8.1](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net481)  
+6. Before running, ensure that:  
+   - Your system has .NET Framework 4.8.1 or later installed  
    - The MySQL .NET Connector (`MySql.Data.dll`) is referenced in your project  
 7. Build and run the project.
 
