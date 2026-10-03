@@ -22,9 +22,7 @@
 **ClinicSystem** is a desktop-based appointment and records management application developed in VB.NET.
 It features user authentication for both admin and patient roles, and supports standard Create, Read, Update, and Delete (CRUD) operations with a MySQL backend.
 
-> **Current version: v0.1.0** — first tagged release. See [Releases](https://github.com/nncast/vb.net-clinic-appointment-system/releases) for the project timeline.
-
-## Screenshots
+> **Current version: v0.1.0** — first tagged release. See [Releases](https://github.com/nncast/vb.net-clinic-appointment-system/releases) for the release notes.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/b0ef62a7-9969-4477-9770-40528ea2c88e" width="400"/>
@@ -74,10 +72,6 @@ It features user authentication for both admin and patient roles, and supports s
 6. Build and run the project.
 
 Sign in as admin with `admin` / `admin`, or as one of the sample patients with `test` / `test`.
-
-## Developer
-
-Janelle Ann Castillo ([nncast](https://github.com/nncast))
 
 ---
 
