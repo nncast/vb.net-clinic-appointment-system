@@ -68,7 +68,7 @@ It features user authentication for both admin and patient roles, and supports s
    git clone https://github.com/nncast/vb.net-clinic-appointment-system.git
    ```
 2. Start MySQL using XAMPP, WAMP, or another server stack.
-3. Import `sql/clinic.sql` with your MySQL client.
+3. Import `database/clinic.sql` with your MySQL client.
 4. Open `ClinicSystem/ClinicSystem.sln` in Visual Studio.
 5. Make sure the project targets .NET Framework 4.8.1 or later and that `MySql.Data.dll` is referenced.
 6. Build and run the project.
