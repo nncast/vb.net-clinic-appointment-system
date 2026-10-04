@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="ClinicSystem/ClinicSystem/Resources/logo%20green.png" alt="EverGreen Medical Clinic" width="250"/>
+  <img src="ClinicSystem/ClinicSystem/Resources/logo%20green%20trim.png" alt="EverGreen Medical Clinic" width="250"/>
 </p>
 
 <p align="center">
