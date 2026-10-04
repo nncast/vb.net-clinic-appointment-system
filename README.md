@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.1.0-2BB98A?style=flat-square" alt="version">
+  <img src="https://img.shields.io/badge/version-0.1.1-2BB98A?style=flat-square" alt="version">
   <img src="https://img.shields.io/badge/status-complete-2772BD?style=flat-square" alt="status">
   <img src="https://img.shields.io/badge/VB.NET-Windows_Forms-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt="VB.NET">
   <img src="https://img.shields.io/badge/.NET_Framework-4.8.1-5C2D91?style=flat-square&logo=dotnet&logoColor=white" alt=".NET Framework">
@@ -11,8 +11,9 @@
 </p>
 
 <p align="center">
-  <b>Download v0.1.0:</b>
-  <a href="https://github.com/nncast/vb.net-clinic-appointment-system/archive/refs/tags/v0.1.0.zip">Source (.zip)</a> ·
+  <b>Download v0.1.1:</b>
+  <a href="https://github.com/nncast/vb.net-clinic-appointment-system/releases/download/v0.1.1/ClinicSystem-v0.1.1-Windows.zip">Windows (.zip)</a> ·
+  <a href="https://github.com/nncast/vb.net-clinic-appointment-system/archive/refs/tags/v0.1.1.zip">Source (.zip)</a> ·
   <a href="https://www.youtube.com/watch?v=6MIb-sQymHw">Preview Video</a> |
   <a href="https://github.com/nncast/vb.net-clinic-appointment-system/releases">All releases</a>
 </p>
@@ -22,7 +23,7 @@
 **ClinicSystem** is a desktop-based appointment and records management application developed in VB.NET.
 It features user authentication for both admin and patient roles, and supports standard Create, Read, Update, and Delete (CRUD) operations with a MySQL backend.
 
-> **Current version: v0.1.0** — first tagged release. See [Releases](https://github.com/nncast/vb.net-clinic-appointment-system/releases) for the release notes.
+> **Current version: v0.1.1** — security and bug-fix release: hashed passwords, a real admin account, parameterized queries, the connection settings in a config file, and a ready-to-run Windows build. See [Releases](https://github.com/nncast/vb.net-clinic-appointment-system/releases) for the release notes.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/b0ef62a7-9969-4477-9770-40528ea2c88e" width="400"/>
@@ -57,21 +58,32 @@ It features user authentication for both admin and patient roles, and supports s
 | .NET Framework 4.8.1 or later | [dotnet.microsoft.com](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net481) |
 | XAMPP or WAMP (for MySQL) | [XAMPP](https://www.apachefriends.org/index.html) · [WAMP](https://www.wampserver.com/en/) |
 | SQLYog or any MySQL client | [SQLYog](https://github.com/webyog/sqlyog-community/wiki/Downloads) |
-| MySQL .NET Connector (`MySql.Data.dll`) | [Connector/NET](https://dev.mysql.com/downloads/connector/net/) |
+| MySQL .NET Connector (`MySql.Data.dll`) | Included in `lib/` (from [Connector/NET](https://dev.mysql.com/downloads/connector/net/)) |
 
 ## Setup and run instructions
 
-1. Clone the repository, or download the [source .zip](https://github.com/nncast/vb.net-clinic-appointment-system/archive/refs/tags/v0.1.0.zip).
+**Windows build (no Visual Studio needed)**
+
+1. Download [`ClinicSystem-v0.1.1-Windows.zip`](https://github.com/nncast/vb.net-clinic-appointment-system/releases/download/v0.1.1/ClinicSystem-v0.1.1-Windows.zip) from the [v0.1.1 release](https://github.com/nncast/vb.net-clinic-appointment-system/releases/tag/v0.1.1) and extract it.
+2. Start MySQL (XAMPP, WAMP, or another server) and import `database/clinic.sql` from the extracted folder.
+3. If your MySQL server, port, user or password differ from `localhost:3306` / `root` / no password, open `ClinicSystem.exe.config` in Notepad and edit the `ClinicDb` connection string.
+4. Run `ClinicSystem.exe`.
+
+**From source**
+
+1. Clone the repository, or download the [source .zip](https://github.com/nncast/vb.net-clinic-appointment-system/archive/refs/tags/v0.1.1.zip).
    ```bash
    git clone https://github.com/nncast/vb.net-clinic-appointment-system.git
    ```
 2. Start MySQL using XAMPP, WAMP, or another server stack.
-3. Import `database/clinic.sql` with your MySQL client.
+3. Import `database/clinic.sql` with SQLYog or another MySQL client.
 4. Open `ClinicSystem/ClinicSystem.sln` in Visual Studio.
-5. Make sure the project targets .NET Framework 4.8.1 or later and that `MySql.Data.dll` is referenced.
+5. If your MySQL settings differ from the defaults, edit the `ClinicDb` connection string in `ClinicSystem/ClinicSystem/App.config`. `MySql.Data.dll` ships in the repository's `lib` folder, so nothing else needs to be installed for the reference.
 6. Build and run the project.
 
-Sign in as admin with `admin` / `admin`, or as one of the sample patients with `test` / `test`.
+Sign in as admin with `admin` / `admin` (the account lives in the `tbladmin` table), or as one of the sample patients with `test` / `test`. Passwords are stored as salted hashes, and new ones need at least 8 characters.
+
+**Upgrading from v0.1.0?** Keep your data: run `database/upgrade-v0.1.1.sql` on your existing `clinic` database instead of importing `clinic.sql`. It adds the admin table and widens the password column; old plain-text passwords keep working and are replaced by a hash at the next sign-in.
 
 ---
 

@@ -1,14 +1,16 @@
 ﻿Public Class SignUpForm
 
     Private Sub SignUpForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Connect("localhost", "clinic", "3306", "root", "")
+        Connect()
+        txtpassword.UseSystemPasswordChar = True
     End Sub
 
     Public Sub clearfields()
         txtfname.Clear()
         txtlname.Clear()
         txtdob.Clear()
-        cmbsex.SelectedValue = -1
+        ' SelectedValue can't be set on an unbound combo box (it throws), so reset the index.
+        cmbsex.SelectedIndex = -1
         txtphonenum.Clear()
         txtstreet.Clear()
         txtbarangay.Clear()
@@ -16,29 +18,61 @@
         txtprovince.Clear()
         txtemail.Clear()
         txtpassword.Clear()
-        HandleFocus(txtstreet, shapestreet, True, "Street")
-        HandleFocus(txtbarangay, shapestreet, True, "Barangay")
-        HandleFocus(txtcity, shapestreet, True, "City")
-        HandleFocus(txtprovince, shapestreet, True, "Province")
+        ' Put the grey placeholders back (focused = False), each on its own outline.
+        HandleFocus(txtstreet, shapestreet, False, "Street")
+        HandleFocus(txtbarangay, shapebarangay, False, "Barangay")
+        HandleFocus(txtcity, shapecity, False, "City")
+        HandleFocus(txtprovince, shapeprovince, False, "Province")
     End Sub
 
     Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnregister.Click
-        If txtfname.Text.Trim = Nothing Or txtlname.Text.Trim = Nothing Or txtdob.Text.Trim = Nothing Or cmbsex.SelectedIndex = -1 Or txtphonenum.Text.Trim = Nothing Or txtstreet.Text.Trim = Nothing Or txtbarangay.Text.Trim = Nothing Or txtcity.Text.Trim = Nothing Or txtprovince.Text.Trim = Nothing Or txtemail.Text.Trim = Nothing Or txtpassword.Text.Trim = Nothing Then
+        Dim street As String = TypedText(txtstreet, "Street")
+        Dim barangay As String = TypedText(txtbarangay, "Barangay")
+        Dim city As String = TypedText(txtcity, "City")
+        Dim province As String = TypedText(txtprovince, "Province")
+        Dim email As String = txtemail.Text.Trim()
+        Dim password As String = txtpassword.Text.Trim()
+        Dim dob As Date
+
+        If txtfname.Text.Trim = Nothing Or txtlname.Text.Trim = Nothing Or Not txtdob.MaskCompleted Or cmbsex.SelectedIndex = -1 Or Not txtphonenum.MaskCompleted Or street = "" Or barangay = "" Or city = "" Or province = "" Or email = "" Or password = "" Then
             MsgBox("All fields are required!", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Missing Information")
-        Else
-            SetQuery("INSERT INTO tblPatient (fname, lname, dob, sex, phonenum, email, password) VALUES ('" & txtfname.Text.Trim() & "', '" & txtlname.Text.Trim() & "', '" & txtdob.Text.Trim() & "', " & "'" & cmbsex.SelectedItem.ToString() & "', '" & txtphonenum.Text.Trim() & "', '" & txtemail.Text.Trim() & "', " & "'" & txtpassword.Text.Trim() & "')")
-
-            Dim patientid As Integer
-            GetQuery("SELECT LAST_INSERT_ID() AS last_id", "last_id")
-            patientid = ds.Tables("last_id").Rows(0).Item("last_id")
-
-            SetQuery("INSERT INTO tblPatientAddress (patientid, street, barangay, city, province) VALUES (" & patientid & ", '" & txtstreet.Text.Trim() & "', '" & txtbarangay.Text.Trim() & "', '" & txtcity.Text.Trim() & "', '" & txtprovince.Text.Trim() & "')")
-
-            MsgBox("Registration successful!", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Success")
-            clearfields()
-            Me.Hide()
-            LoginForm.Show()
+            Exit Sub
         End If
+
+        If Not TryGetDate(txtdob, dob) OrElse dob > Today Then
+            MsgBox("Enter a valid date of birth (YYYY-MM-DD).", MsgBoxStyle.Exclamation, "Invalid Date")
+            Exit Sub
+        End If
+
+        If password.Length < MinPasswordLength Then
+            MsgBox("Password must be at least " & MinPasswordLength & " characters.", MsgBoxStyle.Exclamation, "Weak Password")
+            Exit Sub
+        End If
+
+        If CInt(GetValue("SELECT COUNT(*) FROM tblpatient WHERE email = @e", P("@e", email))) > 0 Then
+            MsgBox("An account with this email already exists.", MsgBoxStyle.Exclamation, "Email Taken")
+            Exit Sub
+        End If
+
+        Try
+            BeginTransaction()
+            Execute("INSERT INTO tblpatient (fname, lname, dob, sex, phonenum, email, password) VALUES (@fname, @lname, @dob, @sex, @phone, @email, @password)",
+                    P("@fname", txtfname.Text.Trim()), P("@lname", txtlname.Text.Trim()), P("@dob", dob.ToString("yyyy-MM-dd")),
+                    P("@sex", cmbsex.SelectedItem.ToString()), P("@phone", txtphonenum.Text.Trim()), P("@email", email), P("@password", HashPassword(password)))
+            Dim patientid As Integer = GetLastInsertedID()
+            Execute("INSERT INTO tblpatientaddress (patientid, street, barangay, city, province) VALUES (@id, @street, @barangay, @city, @province)",
+                    P("@id", patientid), P("@street", street), P("@barangay", barangay), P("@city", city), P("@province", province))
+            CommitTransaction()
+        Catch ex As Exception
+            RollbackTransaction()
+            MsgBox("Registration failed: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            Exit Sub
+        End Try
+
+        MsgBox("Registration successful!", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Success")
+        clearfields()
+        Me.Hide()
+        LoginForm.Show()
     End Sub
 
     Private Sub lbllogin_Click(sender As Object, e As EventArgs) Handles lbllogin.Click
@@ -135,4 +169,13 @@
         HandleFocus(shapepassword, False)
     End Sub
 
+    ' Closing sign-up goes back to the (hidden) login form instead of leaving
+    ' the program running with no window.
+    Private Sub SignUpForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If e.CloseReason = CloseReason.UserClosing Then
+            e.Cancel = True
+            Me.Hide()
+            LoginForm.Show()
+        End If
+    End Sub
 End Class

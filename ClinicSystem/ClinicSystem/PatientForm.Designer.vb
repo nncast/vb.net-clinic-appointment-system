@@ -34,7 +34,6 @@ Partial Class PatientForm
         Me.city = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.province = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.email = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.password = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.txtfname = New System.Windows.Forms.TextBox()
         Me.txtlname = New System.Windows.Forms.TextBox()
         Me.pnlinput = New System.Windows.Forms.Panel()
@@ -117,7 +116,7 @@ Partial Class PatientForm
         '
         'patientview
         '
-        Me.patientview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ID, Me.fname, Me.lname, Me.dob, Me.sex, Me.phonenum, Me.street, Me.barangay, Me.city, Me.province, Me.email, Me.password})
+        Me.patientview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ID, Me.fname, Me.lname, Me.dob, Me.sex, Me.phonenum, Me.street, Me.barangay, Me.city, Me.province, Me.email})
         Me.patientview.FullRowSelect = True
         Me.patientview.GridLines = True
         Me.patientview.Location = New System.Drawing.Point(21, 385)
@@ -181,11 +180,6 @@ Partial Class PatientForm
         '
         Me.email.Text = "Email"
         Me.email.Width = 100
-        '
-        'password
-        '
-        Me.password.Text = "Password"
-        Me.password.Width = 100
         '
         'txtfname
         '
@@ -950,7 +944,6 @@ Partial Class PatientForm
     Friend WithEvents city As System.Windows.Forms.ColumnHeader
     Friend WithEvents province As System.Windows.Forms.ColumnHeader
     Friend WithEvents email As System.Windows.Forms.ColumnHeader
-    Friend WithEvents password As System.Windows.Forms.ColumnHeader
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label

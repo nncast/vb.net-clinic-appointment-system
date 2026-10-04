@@ -2,7 +2,8 @@
 SQLyog Ultimate - MySQL GUI v8.22 
 MySQL - 5.5.27 : Database - clinic
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -15,6 +16,25 @@ MySQL - 5.5.27 : Database - clinic
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`clinic` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `clinic`;
+
+/*Table structure for table `tbladmin` */
+
+DROP TABLE IF EXISTS `tbladmin`;
+
+CREATE TABLE `tbladmin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_admin_username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbladmin` */
+
+/* Admin login: admin / admin. Passwords are PBKDF2-SHA256 hashes. To reset a
+   forgotten admin password, set the column to the new password as plain text;
+   the app accepts it once and replaces it with a hash on the next login. */
+insert  into `tbladmin`(`id`,`username`,`password`) values (1,'admin','PBKDF2$100000$7xGME57O/PslB4O9JPh0ag==$v/tRxY3/CcsMrRSgTfWvQdkYrZf+a0uKGiYnIzzn1a4=');
 
 /*Table structure for table `tblappointment` */
 
@@ -66,13 +86,14 @@ CREATE TABLE `tblpatient` (
   `sex` enum('Male','Female') DEFAULT NULL,
   `phonenum` varchar(13) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_patient_email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tblpatient` */
 
-insert  into `tblpatient`(`id`,`fname`,`lname`,`dob`,`sex`,`phonenum`,`email`,`password`) values (1,'test','test','2024-12-10','Male','0934-271-8247','test','test'),(2,'test2','test2','2024-12-12','Male','0932-178-6421','test2','test2'),(3,'Charles','Darwin','1809-02-12','Female','0975-486-5788','charlesdarwin@email.com','charlesdarwin'),(4,'Marie','Curie','1934-07-04','Female','0942-378-1244','mariecurie@email.com','mariecurie'),(5,'abc','abc','2004-12-12','Male','0238-578-2194','abc@email.com','abc');
+insert  into `tblpatient`(`id`,`fname`,`lname`,`dob`,`sex`,`phonenum`,`email`,`password`) values (1,'test','test','2024-12-10','Male','0934-271-8247','test','PBKDF2$100000$VVoV5yqjjYndjgoKs3Cpwg==$hcMlZpBWfOlxgw/ZkopeijPPyGDpu5gFF+Yxq/MC1Os='),(2,'test2','test2','2024-12-12','Male','0932-178-6421','test2','PBKDF2$100000$8B1xwYlXaACPyfvEH/p4Rg==$Sbz1+4SWPwYlkn+HPjJbFEMB7rGOmPLFyoAG6p2krh4='),(3,'Charles','Darwin','1809-02-12','Female','0975-486-5788','charlesdarwin@email.com','PBKDF2$100000$liuOSDnQV6B1hl0P3PEwHg==$6Vs59U3fXFbFQDfHePPXOUXo0Ng0xuuvYza9+YWVOvk='),(4,'Marie','Curie','1934-07-04','Female','0942-378-1244','mariecurie@email.com','PBKDF2$100000$uSvK64HrwuZTEAz3cK7vHw==$BkD6F5iWjviiE0RxoMXAWsK0PRK7CtxMcXDrtB6sDjg='),(5,'abc','abc','2004-12-12','Male','0238-578-2194','abc@email.com','PBKDF2$100000$q5Nc1nTpbqcJ1FtHYpvSFQ==$m8FE01TQPucAyUB9YAKqs+2IwCpAfqQRBReStfsyq58=');
 
 /*Table structure for table `tblpatientaddress` */
 
