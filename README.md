@@ -18,9 +18,9 @@
   <a href="https://github.com/nncast/vb.net-clinic-appointment-system/releases">All releases</a>
 </p>
 
-# ClinicSystem
+# EverGreen Medical Clinic
 
-**ClinicSystem** is a desktop-based appointment and records management application developed in VB.NET.
+**EverGreen Medical Clinic** is a desktop-based appointment and records management application developed in VB.NET.
 It features user authentication for both admin and patient roles, and supports standard Create, Read, Update, and Delete (CRUD) operations with a MySQL backend.
 
 > **Current version: v0.1.1** — security and bug-fix release: hashed passwords, a real admin account, parameterized queries, the connection settings in a config file, and a ready-to-run Windows build. See [Releases](https://github.com/nncast/vb.net-clinic-appointment-system/releases) for the release notes.
@@ -87,4 +87,4 @@ Sign in as admin with `admin` / `admin` (the account lives in the `tbladmin` tab
 
 ---
 
-*ClinicSystem · 2024 · VB.NET · Windows Forms · .NET Framework 4.8.1 · MySQL*
+*EverGreen Medical Clinic · Clinic Appointment System · 2024 · VB.NET · Windows Forms · .NET Framework 4.8.1 · MySQL*
