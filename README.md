@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.1.1-2BB98A?style=flat-square" alt="version">
+  <img src="https://img.shields.io/badge/version-0.1.2-2BB98A?style=flat-square" alt="version">
   <img src="https://img.shields.io/badge/status-complete-2BB98A?style=flat-square" alt="status">
   <img src="https://img.shields.io/badge/VB.NET-Windows_Forms-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt="VB.NET">
   <img src="https://img.shields.io/badge/.NET_Framework-4.8.1-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET Framework">
@@ -11,9 +11,9 @@
 </p>
 
 <p align="center">
-  <b>Download v0.1.1:</b>
-  <a href="https://github.com/nncast/vb.net-clinic-appointment-system/releases/download/v0.1.1/ClinicSystem-v0.1.1-Windows.zip">Windows (.zip)</a> ·
-  <a href="https://github.com/nncast/vb.net-clinic-appointment-system/archive/refs/tags/v0.1.1.zip">Source (.zip)</a> ·
+  <b>Download v0.1.2:</b>
+  <a href="https://github.com/nncast/vb.net-clinic-appointment-system/releases/download/v0.1.2/ClinicSystem-v0.1.2-Windows.zip">Windows (.zip)</a> ·
+  <a href="https://github.com/nncast/vb.net-clinic-appointment-system/archive/refs/tags/v0.1.2.zip">Source (.zip)</a> ·
   <a href="https://www.youtube.com/watch?v=6MIb-sQymHw">Preview Video</a> |
   <a href="https://github.com/nncast/vb.net-clinic-appointment-system/releases">All releases</a>
 </p>
@@ -23,7 +23,7 @@
 **EverGreen Medical Clinic** is a desktop-based appointment and records management application developed in VB.NET.
 It features user authentication for both admin and patient roles, and supports standard Create, Read, Update, and Delete (CRUD) operations with a MySQL backend.
 
-> **Current version: v0.1.1** — security and bug-fix release: hashed passwords, a real admin account, parameterized queries, the connection settings in a config file, and a ready-to-run Windows build. See [Releases](https://github.com/nncast/vb.net-clinic-appointment-system/releases) for the release notes.
+> **Current version: v0.1.2** — documentation update; the app is unchanged from v0.1.1, the security and bug-fix release: hashed passwords, a real admin account, parameterized queries, the connection settings in a config file, and a ready-to-run Windows build. See [Releases](https://github.com/nncast/vb.net-clinic-appointment-system/releases) for the release notes.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/b0ef62a7-9969-4477-9770-40528ea2c88e" width="400"/>
@@ -64,14 +64,14 @@ It features user authentication for both admin and patient roles, and supports s
 
 **Windows build (no Visual Studio needed)**
 
-1. Download [`ClinicSystem-v0.1.1-Windows.zip`](https://github.com/nncast/vb.net-clinic-appointment-system/releases/download/v0.1.1/ClinicSystem-v0.1.1-Windows.zip) from the [v0.1.1 release](https://github.com/nncast/vb.net-clinic-appointment-system/releases/tag/v0.1.1) and extract it.
+1. Download [`ClinicSystem-v0.1.2-Windows.zip`](https://github.com/nncast/vb.net-clinic-appointment-system/releases/download/v0.1.2/ClinicSystem-v0.1.2-Windows.zip) from the [v0.1.2 release](https://github.com/nncast/vb.net-clinic-appointment-system/releases/tag/v0.1.2) and extract it.
 2. Start MySQL (XAMPP, WAMP, or another server) and import `database/clinic.sql` from the extracted folder.
 3. If your MySQL server, port, user or password differ from `localhost:3306` / `root` / no password, open `ClinicSystem.exe.config` in Notepad and edit the `ClinicDb` connection string.
 4. Run `ClinicSystem.exe`.
 
 **From source**
 
-1. Clone the repository, or download the [source .zip](https://github.com/nncast/vb.net-clinic-appointment-system/archive/refs/tags/v0.1.1.zip).
+1. Clone the repository, or download the [source .zip](https://github.com/nncast/vb.net-clinic-appointment-system/archive/refs/tags/v0.1.2.zip).
    ```bash
    git clone https://github.com/nncast/vb.net-clinic-appointment-system.git
    ```
