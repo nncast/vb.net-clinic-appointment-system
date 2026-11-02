@@ -45,6 +45,11 @@
             Exit Sub
         End If
 
+        If Not IsValidEmail(email) Then
+            MsgBox("Enter a valid email address, e.g. name@example.com.", MsgBoxStyle.Exclamation, "Invalid Email")
+            Exit Sub
+        End If
+
         If password.Length < MinPasswordLength Then
             MsgBox("Password must be at least " & MinPasswordLength & " characters.", MsgBoxStyle.Exclamation, "Weak Password")
             Exit Sub
