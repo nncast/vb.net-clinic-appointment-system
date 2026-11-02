@@ -118,7 +118,7 @@
 
     Private Sub btnupdate_Click(sender As Object, e As EventArgs) Handles btnupdate.Click
         If ptid = Nothing Then
-            MsgBox("Select a patient to update", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "")
+            MsgBox("Select a patient to update.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "No Selection")
             Exit Sub
         End If
 
@@ -207,15 +207,15 @@
 
     Private Sub btndelete_Click(sender As Object, e As EventArgs) Handles btndelete.Click
         If ptid = Nothing Then
-            MsgBox("Select a patient to delete", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "")
+            MsgBox("Select a patient to delete.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "No Selection")
         Else
-            If MsgBox("Are you sure you want to delete this patient? Their address and appointments will also be deleted.", MsgBoxStyle.Information + MsgBoxStyle.YesNo, "") = MsgBoxResult.Yes Then
+            If MsgBox("Are you sure you want to delete this patient? Their address and appointments will also be deleted.", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Confirm Delete") = MsgBoxResult.Yes Then
                 ' The address and appointments go with it (ON DELETE CASCADE).
                 If SetQuery("DELETE FROM tblpatient WHERE id = @id", P("@id", ptid)) Then
                     fill()
                     clearfields()
                     ptid = Nothing
-                    MsgBox("Deleted", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "")
+                    MsgBox("Patient deleted successfully!", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Success")
                 End If
             End If
         End If
