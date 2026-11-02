@@ -140,7 +140,7 @@
                 End If
             End If
         ElseIf updating Then
-            If MsgBox("Are you sure you want to update the appointment information?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "") = MsgBoxResult.Yes Then
+            If MsgBox("Are you sure you want to update the appointment information?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Confirm") = MsgBoxResult.Yes Then
                 ' patientid in the WHERE keeps a patient from changing someone else's appointment.
                 If SetQuery("UPDATE tblappointment SET appointmenttype = @type, procedurereq = @proc, appointmentdate = @d, appointmenttime = @t, reason = @reason, doctorid = @doc WHERE id = @id AND patientid = @pid",
                             P("@type", cmbapttype.Text.Trim()), P("@proc", cmbprocedurereq.Text.Trim()), P("@d", appointmentDate.ToString("yyyy-MM-dd")),
@@ -152,7 +152,7 @@
                     pnlinput.Enabled = False
                     updating = False
                     appointmentid = Nothing
-                    MsgBox("Updated", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "")
+                    MsgBox("Appointment updated successfully!", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Success")
                 End If
             End If
         End If
