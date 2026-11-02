@@ -7,6 +7,7 @@
     Private Sub PatientForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Connect()
 
+        cmbsex.DropDownStyle = ComboBoxStyle.DropDownList
         passwordTip.SetToolTip(txtpassword, "Required for a new patient. When updating, leave blank to keep the current password.")
         fill()
         btnnew.Enabled = True
