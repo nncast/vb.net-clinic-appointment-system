@@ -12,6 +12,9 @@
         piceyeview.Visible = True
         piceyehide.Visible = False
         UpdatePasswordMask()
+
+        ' Pressing Enter logs in.
+        Me.AcceptButton = btnlogin
     End Sub
 
     Public Sub clearfields()
@@ -75,12 +78,11 @@
 
     End Sub
 
+    ' Nothing worth keeping is lost by leaving the login form, so there is no confirmation.
     Private Sub lblsignup_Click(sender As Object, e As EventArgs) Handles lblsignup.Click
-        If MsgBox("Are you sure you want to cancel logging in?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Cancel Login") = MsgBoxResult.Yes Then
-            clearfields()
-            Me.Hide()
-            SignUpForm.Show()
-        End If
+        clearfields()
+        Me.Hide()
+        SignUpForm.Show()
     End Sub
 
     Private Sub txtemail_GotFocus(sender As Object, e As EventArgs) Handles txtemail.GotFocus
