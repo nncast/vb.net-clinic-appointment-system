@@ -46,6 +46,8 @@
                     clearfields()
                     Me.Hide()
                     PatientForm.Show()
+                    ' Load only runs the first time, so reload to include patients who signed up since.
+                    PatientForm.fill()
                     Exit Sub
                 End If
             End If
