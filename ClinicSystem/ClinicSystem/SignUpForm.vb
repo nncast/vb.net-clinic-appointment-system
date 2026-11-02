@@ -3,6 +3,7 @@
     Private Sub SignUpForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Connect()
         txtpassword.UseSystemPasswordChar = True
+        cmbsex.DropDownStyle = ComboBoxStyle.DropDownList
     End Sub
 
     Public Sub clearfields()

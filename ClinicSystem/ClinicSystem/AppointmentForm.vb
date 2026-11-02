@@ -6,6 +6,11 @@
     Private Sub appointmentform_load(sender As Object, e As EventArgs) Handles MyBase.Load
         Connect()
 
+        ' Only the listed choices are valid, so the boxes can't be typed into.
+        For Each box As ComboBox In {cmbapttype, cmbprocedurereq, cmbtime, cmbdoctor}
+            box.DropDownStyle = ComboBoxStyle.DropDownList
+        Next
+
         btnnew.Enabled = True
         btnsave.Enabled = False
         pnlinput.Enabled = False
