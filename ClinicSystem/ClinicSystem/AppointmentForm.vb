@@ -2,6 +2,8 @@
     Public adding As Boolean = False
     Public updating As Boolean = False
     Public appointmentid As Integer = Nothing
+    ' Date of the appointment being edited, as stored (yyyy-MM-dd).
+    Private originalDate As String = ""
 
     Private Sub appointmentform_load(sender As Object, e As EventArgs) Handles MyBase.Load
         Connect()
@@ -82,7 +84,8 @@
             Return False
         End If
 
-        If adding AndAlso appointmentDate < Today Then
+        ' A past appointment can still be edited, but no appointment may be moved into the past.
+        If appointmentDate < Today AndAlso (adding OrElse appointmentDate.ToString("yyyy-MM-dd") <> originalDate) Then
             MsgBox("The appointment date cannot be in the past.", MsgBoxStyle.Exclamation, "Invalid Date")
             Return False
         End If
@@ -193,6 +196,7 @@
         cmbapttype.SelectedItem = row.Item("appointmenttype").ToString
         cmbprocedurereq.SelectedItem = row.Item("procedurereq").ToString
         txtdate.Text = row.Item("appointmentdate").ToString
+        originalDate = row.Item("appointmentdate").ToString
         cmbtime.SelectedItem = row.Item("appointmenttime").ToString
         txtreason.Text = row.Item("reason").ToString
 
