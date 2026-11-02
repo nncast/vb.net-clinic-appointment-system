@@ -42,6 +42,16 @@
         Return Date.TryParseExact(box.Text, "yyyy-MM-dd", Globalization.CultureInfo.InvariantCulture, Globalization.DateTimeStyles.None, value)
     End Function
 
+    ' True for an address like name@example.com (the email is the patient's login).
+    Public Function IsValidEmail(email As String) As Boolean
+        If email.Contains(" ") OrElse Not email.Contains("@") Then Return False
+        Try
+            Return New Net.Mail.MailAddress(email).Address = email
+        Catch ex As FormatException
+            Return False
+        End Try
+    End Function
+
     ' Replaces a plain-text password left over from before hashing with its hash.
     Public Sub UpgradeLegacyPassword(table As String, id As Integer, password As String, stored As String)
         If NeedsRehash(stored) Then

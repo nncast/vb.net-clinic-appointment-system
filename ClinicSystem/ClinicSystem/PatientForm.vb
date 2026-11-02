@@ -90,6 +90,11 @@
             Return False
         End If
 
+        If Not IsValidEmail(txtemail.Text.Trim()) Then
+            MsgBox("Enter a valid email address, e.g. name@example.com.", MsgBoxStyle.Critical, "Validation Error")
+            Return False
+        End If
+
         Dim password As String = txtpassword.Text.Trim()
         If adding And password = "" Then
             MsgBox("A password is required for a new patient.", MsgBoxStyle.Critical, "Validation Error")
