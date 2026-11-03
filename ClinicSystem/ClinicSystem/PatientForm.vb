@@ -136,8 +136,6 @@
         If Not (adding Or updating) Then Exit Sub
         If Not validfields() Then Exit Sub
 
-        Dim question As String = If(adding, "Are you sure you want to add this patient?", "Are you sure you want to update this patient's information?")
-        If MsgBox(question, MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Confirm") <> MsgBoxResult.Yes Then Exit Sub
 
         Dim dob As Date
         TryGetDate(txtdob, dob)
@@ -179,7 +177,7 @@
         adding = False
         updating = False
         ptid = Nothing
-        MsgBox(message, MsgBoxStyle.Information, "Success")
+        Toast.Notify(message)
     End Sub
 
     Private Sub classview_DoubleClick(sender As Object, e As EventArgs) Handles patientview.DoubleClick
@@ -220,7 +218,7 @@
                     fill()
                     clearfields()
                     ptid = Nothing
-                    MsgBox("Patient deleted successfully!", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Success")
+                    Toast.Notify("Patient deleted successfully!")
                 End If
             End If
         End If

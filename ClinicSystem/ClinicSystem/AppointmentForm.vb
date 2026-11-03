@@ -130,33 +130,29 @@
         TryGetDate(txtdate, appointmentDate)
 
         If adding Then
-            If MsgBox("Are you sure you want to add a new appointment?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Confirm") = MsgBoxResult.Yes Then
-                If SetQuery("INSERT INTO tblappointment (patientid, doctorid, appointmenttype, procedurereq, appointmentdate, appointmenttime, reason) VALUES (@pid, @doc, @type, @proc, @d, @t, @reason)",
-                            P("@pid", loggedinpatientid), P("@doc", cmbdoctor.SelectedValue), P("@type", cmbapttype.Text.Trim()), P("@proc", cmbprocedurereq.Text.Trim()),
-                            P("@d", appointmentDate.ToString("yyyy-MM-dd")), P("@t", cmbtime.Text.Trim()), P("@reason", txtreason.Text.Trim())) Then
-                    fill()
-                    disablebuttons()
-                    clearfields()
-                    pnlinput.Enabled = False
-                    adding = False
-                    MsgBox("Appointment saved successfully!", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Success")
-                End If
+            If SetQuery("INSERT INTO tblappointment (patientid, doctorid, appointmenttype, procedurereq, appointmentdate, appointmenttime, reason) VALUES (@pid, @doc, @type, @proc, @d, @t, @reason)",
+                        P("@pid", loggedinpatientid), P("@doc", cmbdoctor.SelectedValue), P("@type", cmbapttype.Text.Trim()), P("@proc", cmbprocedurereq.Text.Trim()),
+                        P("@d", appointmentDate.ToString("yyyy-MM-dd")), P("@t", cmbtime.Text.Trim()), P("@reason", txtreason.Text.Trim())) Then
+                fill()
+                disablebuttons()
+                clearfields()
+                pnlinput.Enabled = False
+                adding = False
+                Toast.Notify("Appointment saved successfully!")
             End If
         ElseIf updating Then
-            If MsgBox("Are you sure you want to update the appointment information?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Confirm") = MsgBoxResult.Yes Then
-                ' patientid in the WHERE keeps a patient from changing someone else's appointment.
-                If SetQuery("UPDATE tblappointment SET appointmenttype = @type, procedurereq = @proc, appointmentdate = @d, appointmenttime = @t, reason = @reason, doctorid = @doc WHERE id = @id AND patientid = @pid",
-                            P("@type", cmbapttype.Text.Trim()), P("@proc", cmbprocedurereq.Text.Trim()), P("@d", appointmentDate.ToString("yyyy-MM-dd")),
-                            P("@t", cmbtime.Text.Trim()), P("@reason", txtreason.Text.Trim()), P("@doc", cmbdoctor.SelectedValue),
-                            P("@id", appointmentid), P("@pid", loggedinpatientid)) Then
-                    fill()
-                    disablebuttons()
-                    clearfields()
-                    pnlinput.Enabled = False
-                    updating = False
-                    appointmentid = Nothing
-                    MsgBox("Appointment updated successfully!", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Success")
-                End If
+            ' patientid in the WHERE keeps a patient from changing someone else's appointment.
+            If SetQuery("UPDATE tblappointment SET appointmenttype = @type, procedurereq = @proc, appointmentdate = @d, appointmenttime = @t, reason = @reason, doctorid = @doc WHERE id = @id AND patientid = @pid",
+                        P("@type", cmbapttype.Text.Trim()), P("@proc", cmbprocedurereq.Text.Trim()), P("@d", appointmentDate.ToString("yyyy-MM-dd")),
+                        P("@t", cmbtime.Text.Trim()), P("@reason", txtreason.Text.Trim()), P("@doc", cmbdoctor.SelectedValue),
+                        P("@id", appointmentid), P("@pid", loggedinpatientid)) Then
+                fill()
+                disablebuttons()
+                clearfields()
+                pnlinput.Enabled = False
+                updating = False
+                appointmentid = Nothing
+                Toast.Notify("Appointment updated successfully!")
             End If
         End If
     End Sub
@@ -172,7 +168,7 @@
                 fill()
                 clearfields()
                 appointmentid = Nothing
-                MsgBox("Appointment deleted successfully!", MsgBoxStyle.Information, "Success")
+                Toast.Notify("Appointment deleted successfully!")
             End If
         End If
     End Sub
