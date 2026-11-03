@@ -109,6 +109,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Conn.vb" />
+    <Compile Include="Toast.vb" />
     <Compile Include="Globals.vb" />
     <Compile Include="PasswordHasher.vb" />
     <Compile Include="LoginForm.vb">
