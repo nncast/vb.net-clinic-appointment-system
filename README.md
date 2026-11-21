@@ -23,7 +23,7 @@
 **EverGreen Medical Clinic** is a desktop-based appointment and records management application developed in VB.NET.
 It features user authentication for both admin and patient roles, and supports standard Create, Read, Update, and Delete (CRUD) operations with a MySQL backend.
 
-> **Current version: v0.2.1** — the program's file properties now show its real version instead of 1.0.0.0. Built on v0.2.0: fewer clicks. Save just saves, with no "Are you sure?" first, and a short notice that fades on its own replaces the "…successfully!" box you had to click away. Deleting, logging out and cancelling unsaved work still ask. Built on v0.1.3: patient list refresh, email checks, pick-only choices. Built on v0.1.2: documentation update; the app is unchanged from v0.1.1, the security and bug-fix release: hashed passwords, a real admin account, parameterized queries, the connection settings in a config file, and a ready-to-run Windows build. See [Releases](https://github.com/nncast/vb.net-clinic-appointment-system/releases) for the release notes.
+> **Current version: v0.2.1** — fewer clicks: Save just saves, and a notice that fades on its own replaces the "…successfully!" box. See [Releases](https://github.com/nncast/vb.net-clinic-appointment-system/releases) for what changed in each version.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/b0ef62a7-9969-4477-9770-40528ea2c88e" width="400"/>
